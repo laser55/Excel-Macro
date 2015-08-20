@@ -1,0 +1,40 @@
+Sub Button1_Click()
+
+Dim MASTER As String
+Dim STRLEN As Integer
+Dim REMLEN As Integer
+
+Dim StringOne As String
+Dim StringTwo As String
+
+StringOne = Worksheets("ONE").Cells(2, 4).Value
+STRLEN = Len(StringOne)
+For I = STRLEN To 7
+    StringOne = StringOne + " "
+Next I
+
+StringTwo = Worksheets("ONE").Cells(3, 4).Value
+STRLEN = Len(StringTwo)
+For I = STRLEN To 7
+    StringTwo = StringTwo + " "
+Next I
+
+MASTER = StringOne + StringTwo
+
+STRLEN = Len(MASTER)
+If STRLEN <> 8 Then
+    MsgBox ("Houston! We have a problem")
+    GoTo finish
+End If
+
+Open "File Location" For Append As #1
+
+Write #1, MASTER
+
+Close #1
+
+MsgBox ("The Eagle has landed!")
+
+finish:
+
+End Sub
